@@ -1,0 +1,58 @@
+
+<!DOCTYPE html>
+<html lang='es'>
+<head>
+<meta charset='UTF-8'>
+<title>Contrato de Entrega de Ayuda Técnica</title>
+<style>
+    body { font-family: Arial, sans-serif; margin: 40px; }
+    .header { display: flex; justify-content: space-between; align-items: center; }
+    .fecha { font-size: 12px; color: #666; }
+    .logo { height: 60px; }
+    h1 { text-align: center; color: #c8102e; margin-top: 10px; }
+    .contenido { margin-top: 30px; text-align: justify; line-height: 1.6; }
+    .firmas { display: flex; justify-content: space-around; margin-top: 60px; }
+    .firmas div { text-align: center; width: 30%; }
+    .correo { margin-top: 40px; text-align: center; }
+    .correo input { padding: 8px; width: 300px; }
+    .botones { margin-top: 20px; text-align: center; }
+    .botones button { padding: 10px 20px; margin: 5px; border: none; cursor: pointer; }
+    .cancelar { background-color: #ccc; }
+    .descargar, .enviar { background-color: #c8102e; color: white; }
+</style>
+</head>
+<body>
+<div class='header'>
+    <div class='fecha'>Fecha: 28/10/2025 15:02</div>
+    <img src='https://upload.wikimedia.org/wikipedia/commons/4/4a/Teleton_logo.png' class='logo'>
+</div>
+<h1>Contrato de Entrega de Ayuda Técnica</h1>
+<div class='contenido'>
+    En Santiago, a la fecha indicada, el Instituto Teletón hace entrega en calidad de comodato de la siguiente ayuda técnica: <strong>silla de ruedas neurológica, talla 36, marco corto, inflables</strong>, al paciente <strong>Vicente Figueroa Puebla</strong>, RUT <strong>24.930.136-1</strong>. Esta entrega se realiza con el compromiso de uso exclusivo para el beneficiario, mantención adecuada y devolución en caso de no requerirse más. El presente contrato tiene una vigencia de 1 año desde la fecha de entrega.
+</div>
+<div class='firmas'>
+    <div>Funcionario Teletón<br><br>________________________</div>
+    <div>Quien recibe<br><br>________________________</div>
+    <div>Representante Legal<br><br>________________________</div>
+</div>
+<div class='correo'>
+    <label>Correo destinatario:</label><br>
+    <input type='email' id='correo' placeholder='ejemplo@correo.com'>
+</div>
+<div class='botones'>
+    <button class='cancelar' onclick='window.location.reload()'>Cancelar</button>
+    <button class='descargar' onclick='window.print()'>Descargar PDF</button>
+    <button class='enviar' onclick='enviarCorreo()'>Enviar</button>
+</div>
+<script>
+function enviarCorreo() {
+    var correo = document.getElementById('correo').value;
+    if (correo) {
+        alert('Correo enviado a: ' + correo);
+    } else {
+        alert('Por favor ingrese un correo válido.');
+    }
+}
+</script>
+</body>
+</html>
