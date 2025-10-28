@@ -1,63 +1,57 @@
+
 <!DOCTYPE html>
-<html lang="es">
+<html lang='es'>
 <head>
-<meta charset="UTF-8">
+<meta charset='UTF-8'>
 <title>Contrato de Entrega de Ayuda Técnica</title>
 <style>
-    body { font-family: Arial, sans-serif; margin: 40px; background: #f9f9f9; }
-    .container { background: white; padding: 30px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
-    h1 { color: #c8102e; text-align: center; }
-    .logo { display: block; margin: 0 auto 20px auto; width: 120px; }
-    .legal { margin-top: 20px; font-size: 16px; line-height: 1.6; }
-    .firmas { margin-top: 40px; display: flex; justify-content: space-between; }
+    body { font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 20px; }
+    .container { background-color: #fff; padding: 30px; max-width: 700px; margin: auto; box-shadow: 0 0 10px rgba(0,0,0,0.1); border-radius: 8px; }
+    .fecha { color: #666; font-size: 14px; text-align: left; margin-bottom: 10px; }
+    .logo { text-align: center; }
+    .logo img { width: 120px; }
+    h1 { color: #c8102e; text-align: center; margin: 20px 0; }
+    .texto-legal { text-align: justify; line-height: 1.6; margin-top: 20px; }
+    .firmas { display: flex; justify-content: space-between; margin-top: 40px; }
     .firmas div { text-align: center; width: 30%; }
-    .actions { margin-top: 30px; text-align: center; }
-    input[type="email"] { width: 100%; padding: 10px; margin-bottom: 15px; font-size: 16px; }
-    button { padding: 10px 20px; margin: 5px; font-size: 16px; border: none; border-radius: 4px; cursor: pointer; }
-    .download { background-color: #c8102e; color: white; }
-    .send { background-color: #0072c6; color: white; }
+    .acciones { text-align: center; margin-top: 30px; }
+    .acciones input { padding: 8px; width: 300px; margin-bottom: 10px; }
+    .acciones button { padding: 10px 20px; margin: 5px; border: none; border-radius: 4px; cursor: pointer; font-size: 16px; }
+    .acciones .imprimir { background-color: #c8102e; color: white; }
+    .acciones .enviar { background-color: #0072c6; color: white; }
 </style>
 </head>
 <body>
-<div class="container">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/4/4a/Teleton_logo.png" alt="Logo Teletón" class="logo">
+<div class='container'>
+    <div class='fecha'>Fecha y hora: 28/10/2025 15:22</div>
+    <div class='logo'>
+        <img src='https://upload.wikimedia.org/wikipedia/commons/4/4a/Teleton_logo.png' alt='Logo Teletón'>
+    </div>
     <h1>Contrato de Entrega de Ayuda Técnica</h1>
-    <div class="legal">
-        En Santiago, a la fecha de hoy, el Instituto Teletón hace entrega en calidad de comodato de la ayuda técnica indicada al paciente <strong>Vicente Figueroa Puebla</strong>, RUT <strong>24.930.136-1</strong>, según evaluación realizada por el equipo clínico. Esta ayuda técnica será utilizada exclusivamente para mejorar su calidad de vida y deberá ser devuelta en caso de no ser utilizada, pérdida de seguimiento o por término del tratamiento. El paciente se compromete a cuidar y mantener en buen estado el dispositivo entregado.
+    <div class='texto-legal'>
+        En Santiago, a la fecha indicada, el Instituto Teletón hace entrega en calidad de comodato de la siguiente ayuda técnica: <strong>silla de ruedas neurológica, talla 36, marco corto, inflables</strong>, al paciente <strong>Vicente Figueroa Puebla</strong>, RUT <strong>24.930.136-1</strong>. Esta entrega se realiza con el compromiso de uso exclusivo para el beneficiario, debiendo ser devuelta en caso de no ser utilizada o al término del tratamiento. El beneficiario se compromete a cuidar el equipo y reportar cualquier daño o pérdida.
     </div>
-
-    <div class="firmas">
-        <div>
-            Firma Funcionario Teletón<br><br>
-            _______________________
-        </div>
-        <div>
-            Firma Beneficiario<br><br>
-            _______________________
-        </div>
-        <div>
-            Firma Representante Legal<br><br>
-            _______________________
-        </div>
+    <div class='firmas'>
+        <div>Funcionario Teletón<br><br>__________________</div>
+        <div>Quien recibe<br><br>__________________</div>
+        <div>Representante Legal<br><br>__________________</div>
     </div>
-
-    <div class="actions">
-        <input type="email" id="correo" placeholder="Ingrese correo del destinatario">
-        <button class="download" onclick="window.print()">Descargar PDF</button>
-        <button class="send" onclick="enviarCorreo()">Enviar</button>
+    <div class='acciones'>
+        <input type='email' id='correo' placeholder='Correo destinatario'>
+        <br>
+        <button class='imprimir' onclick='window.print()'>Imprimir</button>
+        <button class='enviar' onclick='enviarCorreo()'>Enviar</button>
     </div>
 </div>
-
 <script>
 function enviarCorreo() {
     var correo = document.getElementById('correo').value;
     if (correo) {
         alert('Correo enviado a: ' + correo);
     } else {
-        alert('Por favor ingrese un correo válido.');
+        alert('Por favor ingrese un correo electrónico válido.');
     }
 }
 </script>
 </body>
 </html>
-
