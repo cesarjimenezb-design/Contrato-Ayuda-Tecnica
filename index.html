@@ -1,123 +1,259 @@
-
 <!DOCTYPE html>
-
 <html lang="es">
 <head>
-<meta charset="utf-8"/>
-<title>Contrato de Entrega de Ayuda Técnica</title>
-<style>
-    body { font-family: Arial, sans-serif; background: #f9f9f9; margin: 0; padding: 20px; }
-    .container { max-width: 700px; margin: auto; background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
-    .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
-    .date { color: #666; font-size: 14px; }
-    .logo { text-align: center; margin-bottom: 10px; }
-    .logo img { width: 120px; }
-    h1 { color: #c8102e; text-align: center; margin-bottom: 20px; }
-    p { text-align: justify; line-height: 1.6; }
-    .signature-section { margin-top: 40px; }
-    .signature-row { display: flex; justify-content: space-between; margin-bottom: 40px; }
-    .signature-box { width: 48%; text-align: center; }
-    .canvas-box { text-align: center; margin-top: 10px; }
-    canvas { border: 1px solid #ccc; }
-    .email-section { margin-top: 20px; text-align: center; }
-    .email-section label { display: block; margin-bottom: 5px; font-weight: bold; }
-    .email-section input { width: 100%; padding: 8px; font-size: 14px; }
-    .buttons { text-align: center; margin-top: 20px; }
-    .buttons button { padding: 10px 20px; margin: 5px; font-size: 14px; border: none; border-radius: 4px; cursor: pointer; }
-    .print-btn { background-color: #c8102e; color: white; }
-    .send-btn { background-color: #0072c6; color: white; }
-</style>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Contrato de Entrega de Ayuda Técnica</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f8f9fa;
+      margin: 0;
+      padding: 20px;
+    }
+    .container {
+      max-width: 900px;
+      margin: 20px auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+    }
+    .header {
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-bottom: 20px;
+    }
+    .logo img {
+      width:120px;
+    }
+    .title {
+      text-align:center;
+      color:#b5121b;
+      margin: 10px 0 20px 0;
+    }
+    p {
+      text-align: justify;
+      line-height: 1.6;
+      color:#222;
+    }
+    strong { color:#000; }
+
+    .meta {
+      font-size:14px;
+      color:#444;
+      margin-bottom: 12px;
+    }
+
+    /* Sección de firmas simétricas */
+    .signature-section {
+      margin-top: 30px;
+    }
+    .signature-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    .signature-box {
+      background:#fbfbfb;
+      border:1px solid #e6e6e6;
+      padding: 20px;
+      border-radius:8px;
+      text-align:center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    .signature-box h3 {
+      margin: 0 0 10px 0;
+      font-size: 18px;
+      color:#222;
+    }
+    .input-name {
+      width: 90%;
+      padding:8px;
+      text-align:center;
+      border-radius:4px;
+      border:1px solid #ccc;
+      margin-top:8px;
+      font-weight:bold;
+    }
+    .input-name[readonly] {
+      background:#f4f4f4;
+      border:none;
+      color:#111;
+    }
+    .firma-linea {
+      border-bottom:1px solid #000;
+      height:28px;
+      margin: 26px auto 6px auto;
+      width:90%;
+    }
+    .fecha-firma {
+      font-size:12px;
+      color:#555;
+      margin-top:8px;
+      min-height:18px;
+    }
+    .checkbox-row {
+      margin-top:10px;
+      font-size:14px;
+    }
+
+    /* Email y botones */
+    .email-row {
+      margin-top:30px;
+      text-align:center;
+    }
+    input[type="email"]{
+      width:70%;
+      max-width:480px;
+      padding:10px;
+      border-radius:6px;
+      border:1px solid #cfcfcf;
+    }
+    .actions {
+      text-align:center;
+      margin-top:18px;
+    }
+    button {
+      padding:10px 18px;
+      margin:6px;
+      border-radius:6px;
+      border:none;
+      cursor:pointer;
+      font-weight:bold;
+      color:#fff;
+    }
+    .btn-print{ background:#b5121b; }
+    .btn-send { background:#007bff; }
+    .small-note {
+      font-size:12px;
+      color:#666;
+      margin-top:6px;
+    }
+
+    @media(max-width:720px){
+      .signature-row{ grid-template-columns: 1fr; }
+      input[type="email"]{ width:100%; }
+    }
+  </style>
 </head>
 <body>
-<div class="container">
-<div class="header">
-<div class="date" id="currentDate"></div>
-</div>
-<div class="logo">
-<img alt="Logo Teletón" src="https://upload.wikimedia.org/wikipedia/commons/4/4a/Teleton_logo.png"/>
-</div>
-<h1>Contrato de Entrega de Ayuda Técnica</h1>
-<p>
-        En Santiago, a la fecha indicada, el Instituto Teletón hace entrega en calidad de comodato de la siguiente ayuda técnica: <strong>silla de ruedas neurológica, talla 36, marco corto, inflables</strong>, al paciente <strong>Vicente Figueroa Puebla</strong>, RUT <strong>24.930.136-1</strong>, quien ha sido evaluado y requiere este dispositivo como parte de su tratamiento.  el beneficiario se compromete a hacer buen uso del equipo, mantenerlo en condiciones adecuadas y devolverlo en caso de no requerirlo o al finalizar el periodo acordado.
+  <div class="container">
+    <div class="header">
+      <div class="logo"><img alt="Logo Teletón" src="https://upload.wikimedia.org/wikipedia/commons/4/4a/Teleton_logo.png"/></div>
+      <div class="meta" id="fechaEncabezado">—</div>
+    </div>
+
+    <h1 class="title">Contrato de Entrega de Ayuda Técnica</h1>
+
+    <p>
+      En Santiago, a la fecha indicada en este documento, el Instituto Teletón hace entrega en calidad de comodato de la siguiente ayuda técnica:
+      <strong>silla de ruedas neurológica, talla 36, marco corto, inflables</strong>, al paciente
+      <strong>Vicente Figueroa Puebla</strong>, RUT <strong>24.930.136-1</strong>, quien ha sido evaluado y requiere este dispositivo como parte de su tratamiento.
+      El beneficiario se compromete a hacer buen uso del equipo, mantenerlo en condiciones adecuadas y devolverlo en caso de no requerirlo o al finalizar el periodo acordado.
     </p>
-<p>
-        Representante Legal: <strong>María Puebla</strong>, RUT <strong>12.345.678-9</strong>
-</p>
-<div class="signature-section">
-<div class="signature-row">
-<div class="signature-box">
-<p>Firma Funcionario Teletón</p>
-<p></p>
-<canvas height="100" id="firmaFuncionario" style="border:1px solid #000;" width="300"></canvas>
-<button onclick="limpiarCanvas('firmaFuncionario')">Limpiar</button>
 
-</div>
-<div class="signature-box">
-<p>Firma Quien Recibe</p>
-<div class="canvas-box"></div>
-<canvas height="100" id="firmaRecibe" style="border:1px solid #000;" width="300"></canvas>
-<button onclick="limpiarCanvas('firmaRecibe')">Limpiar</button>
+    <p>
+      Entrega realizada por el Instituto Teletón a través de su personal autorizado, quedando constancia de que el equipo fue entregado en correcto estado de funcionamiento y sin daños aparentes a la fecha de entrega.
+      El receptor acepta mantener el equipo y seguir las indicaciones de mantenimiento y uso entregadas por el personal técnico, siendo responsable de cualquier daño por uso negligente.
+    </p>
 
-</div>
-</div>
-</div>
-<div class="email-section">
-<label for="email">Correo destinatario:</label>
-<input id="email" placeholder="correo@ejemplo.com" type="email"/>
-</div>
-<div class="buttons">
-<button class="print-btn" onclick="window.print()">Imprimir</button>
-<button class="send-btn" onclick="sendEmail()">Enviar</button>
-</div>
-</div>
-<script>
-    document.getElementById('currentDate').innerText = new Date().toLocaleString('es-CL');
+    <p>
+      Representante Legal: <strong>María Puebla</strong>, RUT <strong>12.345.678-9</strong>
+    </p>
 
-    function sendEmail() {
-        const email = document.getElementById('email').value;
-        if (email) {
-            alert('Correo enviado a: ' + email);
-        } else {
-            alert('Por favor ingrese un correo válido.');
-        }
+    <!-- Sección de firmas -->
+    <div class="signature-section">
+      <div class="signature-row">
+        <!-- Firma del funcionario -->
+        <div class="signature-box">
+          <h3>Firma</h3>
+          <input class="input-name" id="funcionario" type="text" value="José Pérez López (Funcionario)" readonly />
+          <div class="checkbox-row">
+            <label><input id="aceptar" type="checkbox"> Declaro haber firmado electrónicamente este documento</label>
+          </div>
+          <div class="fecha-firma" id="fechaFuncionario"></div>
+        </div>
+
+        <!-- Firma del tutor -->
+        <div class="signature-box">
+          <h3>Firma Tutor</h3>
+          <div class="firma-linea"></div>
+          <input class="input-name" id="tutor" type="text" value="María Puebla" readonly />
+          <div class="fecha-firma" id="fechaTutor"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Email y botones -->
+    <div class="email-row">
+      <label for="email"><strong>Correo destinatario:</strong></label><br/>
+      <input id="email" type="email" placeholder="correo@ejemplo.com" />
+    </div>
+
+    <div class="actions">
+      <button class="btn-print" onclick="window.print()">Imprimir</button>
+      <button class="btn-send" id="btnEnviar">Enviar</button>
+      <div class="small-note" id="statusMsg"></div>
+    </div>
+  </div>
+
+  <script>
+    function formatFechaHora(d){
+      const pad = (n) => String(n).padStart(2,'0');
+      return `${pad(d.getDate())}/${pad(d.getMonth()+1)}/${d.getFullYear()} ${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}`;
     }
-</script>
 
-<script>
-function iniciarCanvas(id) {
-    const canvas = document.getElementById(id);
-    const ctx = canvas.getContext("2d");
-    let dibujando = false;
+    document.getElementById('fechaEncabezado').textContent = 'Fecha documento: ' + formatFechaHora(new Date());
 
-    canvas.onmousedown = () => dibujando = true;
-    canvas.onmouseup = () => dibujando = false;
-    canvas.onmouseout = () => dibujando = false;
-    canvas.onmousemove = (e) => {
-        if (!dibujando) return;
-        const rect = canvas.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        ctx.lineWidth = 2;
-        ctx.lineCap = "round";
-        ctx.strokeStyle = "black";
-        ctx.lineTo(x, y);
-        ctx.stroke();
-        ctx.beginPath();
-        ctx.moveTo(x, y);
-    };
-}
+    const chkAceptar = document.getElementById('aceptar');
+    const fechaFunc = document.getElementById('fechaFuncionario');
+    const fechaTut = document.getElementById('fechaTutor');
+    const btnEnviar = document.getElementById('btnEnviar');
+    const statusMsg = document.getElementById('statusMsg');
 
-function limpiarCanvas(id) {
-    const canvas = document.getElementById(id);
-    const ctx = canvas.getContext("2d");
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.beginPath();
-}
+    chkAceptar.addEventListener('change', function(){
+      if(this.checked){
+        const f = new Date();
+        const texto = 'Fecha de firma: ' + formatFechaHora(f);
+        fechaFunc.textContent = texto;
+        fechaTut.textContent = texto;
+      } else {
+        fechaFunc.textContent = '';
+        fechaTut.textContent = '';
+      }
+    });
 
-window.onload = () => {
-    iniciarCanvas("firmaFuncionario");
-    iniciarCanvas("firmaRecibe");
-};
-</script>
+    btnEnviar.addEventListener('click', function(){
+      const email = document.getElementById('email').value.trim();
+      const funcionario = document.getElementById('funcionario').value.trim();
+      const tutor = document.getElementById('tutor').value.trim();
+      const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      if(!email || !re.test(email)){
+        alert('Por favor ingrese un correo destinatario válido.');
+        return;
+      }
+      if(!chkAceptar.checked){
+        alert('El funcionario debe declarar la firma electrónica (marcar la casilla).');
+        return;
+      }
+
+      const timestamp = new Date();
+      alert(
+        'Documento enviado (simulado).\n\n' +
+        'Funcionario: ' + funcionario + '\n' +
+        'Tutor: ' + tutor + '\n' +
+        'Fecha de envío: ' + formatFechaHora(timestamp) + '\n' +
+        'Enviado a: ' + email + '\n\n' +
+        'Firma electrónica simple registrada correctamente.'
+      );
+      statusMsg.textContent = 'Documento enviado a ' + email + ' — ' + formatFechaHora(timestamp);
+    });
+  </script>
 </body>
 </html>
