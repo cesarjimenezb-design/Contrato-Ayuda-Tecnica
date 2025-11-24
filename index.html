@@ -46,13 +46,13 @@
       margin-bottom: 12px;
     }
 
-    /* Sección de firmas simétricas */
+    /* Sección de firmas (solo tutor) */
     .signature-section {
       margin-top: 30px;
     }
     .signature-row {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr;
       gap: 20px;
     }
     .signature-box {
@@ -92,14 +92,16 @@
       width:90%;
     }
     .fecha-firma {
-      font-size:12px;
-      color:#555;
+      font-size:13px;
+      color:#155724; /* verde para indicar FES exitoso */
       margin-top:8px;
       min-height:18px;
+      font-weight:700;
     }
-    .checkbox-row {
-      margin-top:10px;
-      font-size:14px;
+    .fes-note {
+      margin-top:6px;
+      font-size:13px;
+      color:#155724;
     }
 
     /* Email y botones */
@@ -157,29 +159,20 @@
       El beneficiario se compromete a hacer buen uso del equipo, mantenerlo en condiciones adecuadas y devolverlo en caso de no requerirlo o al finalizar el periodo acordado.
     </p>
 
-        <p>
+    <p>
       Representante Legal: <strong>María Puebla</strong>, RUT <strong>12.345.678-9</strong>
     </p>
 
-    <!-- Sección de firmas -->
+    <!-- Sección de firmas (solo tutor: simulación FES) -->
     <div class="signature-section">
       <div class="signature-row">
-        <!-- Firma del funcionario -->
-        <div class="signature-box">
-          <h3>Firma</h3>
-          <input class="input-name" id="funcionario" type="text" value="César Jiménez" readonly />
-          <div class="checkbox-row">
-            <label><input id="aceptar" type="checkbox"> Declaro haber firmado electrónicamente este documento</label>
-          </div>
-          <div class="fecha-firma" id="fechaFuncionario"></div>
-        </div>
-
-        <!-- Firma del tutor -->
-        <div class="signature-box">
+        <!-- Firma del tutor (simulada con FES) -->
+        <div class="signature-box" role="region" aria-label="Firma Tutor">
           <h3>Firma Tutor</h3>
-          <div class="firma-linea"></div>
+          <div class="firma-linea" aria-hidden="true"></div>
           <input class="input-name" id="tutor" type="text" value="María Puebla" readonly />
-          <div class="fecha-firma" id="fechaTutor"></div>
+          <div class="fecha-firma" id="fechaTutor">Firmado electrónicamente (FES) — </div>
+          <div class="fes-note">Firma electrónica simple (FES) registrada automáticamente</div>
         </div>
       </div>
     </div>
@@ -203,29 +196,24 @@
       return `${pad(d.getDate())}/${pad(d.getMonth()+1)}/${d.getFullYear()} ${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}`;
     }
 
+    // Encabezado - fecha del documento
     document.getElementById('fechaEncabezado').textContent = 'Fecha documento: ' + formatFechaHora(new Date());
 
-    const chkAceptar = document.getElementById('aceptar');
-    const fechaFunc = document.getElementById('fechaFuncionario');
-    const fechaTut = document.getElementById('fechaTutor');
+    // Simular firma tutor con FES al cargar la página
+    (function simularFirmaTutorFES(){
+      const fechaTutEl = document.getElementById('fechaTutor');
+      const now = new Date();
+      fechaTutEl.textContent = 'Firmado electrónicamente (FES) — ' + formatFechaHora(now);
+      // también podría añadirse un identificador FES simulado si lo requieres:
+      // e.g. fechaTutEl.textContent += ' — ID FES: FES-2025-0001';
+    })();
+
+    // Envío (simulado)
     const btnEnviar = document.getElementById('btnEnviar');
     const statusMsg = document.getElementById('statusMsg');
 
-    chkAceptar.addEventListener('change', function(){
-      if(this.checked){
-        const f = new Date();
-        const texto = 'Fecha de firma: ' + formatFechaHora(f);
-        fechaFunc.textContent = texto;
-        fechaTut.textContent = texto;
-      } else {
-        fechaFunc.textContent = '';
-        fechaTut.textContent = '';
-      }
-    });
-
     btnEnviar.addEventListener('click', function(){
       const email = document.getElementById('email').value.trim();
-      const funcionario = document.getElementById('funcionario').value.trim();
       const tutor = document.getElementById('tutor').value.trim();
       const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -233,19 +221,15 @@
         alert('Por favor ingrese un correo destinatario válido.');
         return;
       }
-      if(!chkAceptar.checked){
-        alert('El funcionario debe declarar la firma electrónica (marcar la casilla).');
-        return;
-      }
 
       const timestamp = new Date();
+      // Mensaje de confirmación (simulado)
       alert(
         'Documento enviado (simulado).\n\n' +
-        'Funcionario: ' + funcionario + '\n' +
         'Tutor: ' + tutor + '\n' +
-        'Fecha de envío: ' + formatFechaHora(timestamp) + '\n' +
-        'Enviado a: ' + email + '\n\n' +
-        'Firma electrónica simple registrada correctamente.'
+        'Firma tutor: Firmado electrónicamente (FES)\n' +
+        'Fecha de firma: ' + formatFechaHora(timestamp) + '\n' +
+        'Enviado a: ' + email
       );
       statusMsg.textContent = 'Documento enviado a ' + email + ' — ' + formatFechaHora(timestamp);
     });
